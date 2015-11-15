@@ -13,10 +13,14 @@ public class MST {
 		
 		Kruskal kruskal = new Kruskal(weight);
 		
+		long time1 = System.currentTimeMillis();
+		kruskal.generateEdgeResult();
+		long time2 = System.currentTimeMillis();
+		System.out.println("Kruskal time: " + (time2 - time1) + "ms") ;
 		long t1=System.currentTimeMillis();
 		new Prim(weight);
 		long t2=System.currentTimeMillis();
-		System.out.println(t2-t1);
+		System.out.println("Prim time: " + (t2 - t1) + "ms");
 
 	}
 }	
