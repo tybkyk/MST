@@ -23,27 +23,27 @@ public class Prim {
 				if(lowestW[k]<min&&(!checked[k])){
 					min=lowestW[k];
 					nextpick=k;
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						}
 				}
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-					}
 			}
 			if(i<vertexNum-1)
-				System.out.println((nextpick + 1)+"-->"+edge[nextpick]+" with weight"+lowestW[nextpick]);
+				System.out.println((nextpick + 1)+"--"+edge[nextpick]+" with weight"+lowestW[nextpick]);
 			checked[nextpick]=true;
 			
 			for(int k=1; k<vertexNum; k++){
 				if((weight[nextpick][k]<lowestW[k])&&(!checked[k])){
 					lowestW[k]=weight[nextpick][k];
 				    edge[k]=nextpick+1;
+				    try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+						}
 				}
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-					}
 			}
 		}
 	}
