@@ -1,5 +1,6 @@
 package MST;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,21 +13,10 @@ public class Kruskal {
 	/**n:number of vertices*/
 	private int numVertices;
 	
-	private PriorityQueue<Edge> edgeList = new PriorityQueue<Edge>();
-	
+	PriorityQueue<Edge> edgeList = new PriorityQueue<Edge>();	
 	public Kruskal(int[][] graph) {
 		this.numVertices = graph.length;
-		//construct edgeList.
-		int rowLen = graph.length;
-		int colmnLen = graph[0].length;
-		for(int i = 1; i <= rowLen; i++) {
-			for(int j = 1; j <= colmnLen; j++) {
-				if(graph[i - 1][j - 1] > 0 && graph[i - 1][j - 1] < Integer.MAX_VALUE) {
-					Edge edge = new Edge(i, j, graph[i - 1][j - 1]);
-					edgeList.add(edge);
-				}
-			}
-		}
+		this.edgeList = generateTree(graph);
 		//Test number of edges
 //		for(Edge e : edgeList) {
 //			System.out.println(e.toString());
@@ -43,6 +33,17 @@ public class Kruskal {
 				e.printStackTrace();
 			}
 		}
+		
+		//use two-dimention array to record result
+		int[][] tree = new int[numVertices][numVertices];
+		for(int i = 0; i < numVertices; i++) {
+			for(int j = 0; j < numVertices; j++) {
+				tree[i][j] = Integer.MAX_VALUE;
+			}
+		}
+		
+		
+		
 		
 		// using map to indicate which node belongs to which set.
 		Map<Integer, Set<Integer>> map = new HashMap<Integer, Set<Integer>>();
@@ -61,6 +62,7 @@ public class Kruskal {
 			Edge miniEdge = edgeList.poll();
 			int start = miniEdge.getStart();
 			int end = miniEdge.getEnd();
+			int weight = miniEdge.getWeight();
 			Set<Integer> setStart = map.get(start);
 			Set<Integer> setEnd = map.get(end);
 			// both nodes did not show up in other set.
@@ -84,14 +86,36 @@ public class Kruskal {
 			} else {
 				continue;
 			}
-			System.out.println(miniEdge);
+			tree[start - 1][end   - 1] = weight;
+			tree[end   - 1][start - 1] = weight;
 			treeEdgeCounter++;
 		}
 		
+		
+		//output result
+		PriorityQueue<Edge> outputEdgeList = new PriorityQueue<Edge>();	
+		outputEdgeList = generateTree(tree);
+		for(int i = 0; i < outputEdgeList.size(); i++) {
+			System.out.println(outputEdgeList.poll());
+		}
 	}
+
+
+private PriorityQueue<Edge> generateTree(int[][] graph) {
+	//construct edgeList.
+	PriorityQueue<Edge> edgeList = new PriorityQueue<Edge>();
+	int rowLen = graph.length;
+	int colmnLen = graph[0].length;
+	for(int i = 1; i <= rowLen; i++) {
+		for(int j = 1; j <= colmnLen; j++) {
+			if(graph[i - 1][j - 1] > 0 && graph[i - 1][j - 1] < Integer.MAX_VALUE) {
+				Edge edge = new Edge(i, j, graph[i - 1][j - 1]);
+				edgeList.add(edge);
+			}
+		}
+	}
+	return edgeList;
 }
-
-
 
 
 
@@ -142,4 +166,6 @@ class Edge implements Comparable<Edge>{
 	public String toString() {
 		return start + "--" + end + ":" + weight;
 	}
+}
+
 }
