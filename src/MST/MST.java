@@ -3,11 +3,11 @@ package MST;
 public class MST {
 	static int MAX = Integer.MAX_VALUE;
 	static int[][] graph1 = {
-			   {MAX, 6, 9, 5, 13},  
-			   {6, MAX, 6,7,8},  
-			   {9,6,MAX,9,3},  
-			   {5,7,9,MAX,3},  
-			   {13,8,3,3,MAX}  
+			   {MAX,   6,   9,   5,  13},  
+			   {  6, MAX,   6,   7,   8},  
+			   {  9,   6, MAX,   9,   3},  
+			   {  5,   7,   9, MAX,   3},  
+			   { 13,   8,   3,   3, MAX}  
 			 };
 	static int[][] graph2 = {
 			   {MAX,   4, MAX, MAX, MAX, MAX, MAX,   8, MAX},  
