@@ -1,21 +1,14 @@
 package MST;
 
 public class Prim {
-	static int MAX = Integer.MAX_VALUE;
-	static int[][] weight = {
-			   {MAX, 6, 9, 5, 13},  
-			   {6, MAX, 6,7,8},  
-			   {9,6,MAX,9,3},  
-			   {5,7,9,MAX,3},  
-			   {13,8,3,3,MAX}  
-			 };
-	static int vertexNum = weight.length;
-	static int []lowestW=new int[vertexNum];
-	static int []edge=new int[vertexNum];
-	static boolean []checked=new boolean[vertexNum];
-	
-	public void prim()
+	public Prim(int[][] weight)
 	{
+		int MAX = Integer.MAX_VALUE;	
+		int vertexNum = weight.length;
+		int []lowestW=new int[vertexNum];
+		int []edge=new int[vertexNum];
+		boolean []checked=new boolean[vertexNum];
+		
 		for(int i=0; i<vertexNum; i++){
 			lowestW[i] = weight[0][i];
 			checked[i] = false;
@@ -54,4 +47,5 @@ public class Prim {
 			}
 		}
 	}
+
 }
