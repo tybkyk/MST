@@ -11,6 +11,7 @@ public class Kruskal {
 	
 	
 	/**n:number of vertices*/
+	
 	private int numVertices;
 	ArrayList<Edge> edgeList = new ArrayList<Edge>();
 	ArrayList<Edge> outputEdgeList = new ArrayList<Edge>();
