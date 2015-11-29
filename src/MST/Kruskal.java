@@ -13,11 +13,12 @@ public class Kruskal {
 	/**n:number of vertices*/
 	private int numVertices;
 	
-	PriorityQueue<Edge> edgeList = new PriorityQueue<Edge>();
+	ArrayList<Edge> edgeList = new ArrayList<Edge>();
 	ArrayList<Edge> outputEdgeList = new ArrayList<Edge>();
 	public Kruskal(int[][] graph) {
 		this.numVertices = graph.length;
 		this.edgeList = generateTree(graph);
+		
 		//Test number of edges
 //		for(Edge e : edgeList) {
 //			System.out.println(e.toString());
@@ -27,6 +28,7 @@ public class Kruskal {
 	
 	
 	public void generateEdgeResult() {
+		this.edgeList.sort(null);
 		if(edgeList.size() == 0) {
 			try {
 				throw new Exception("Please input a graph.");
@@ -60,7 +62,7 @@ public class Kruskal {
 			}
 			
 			
-			Edge miniEdge = edgeList.poll();
+			Edge miniEdge = edgeList.remove(0);
 			int start = miniEdge.getStart();
 			int end = miniEdge.getEnd();
 			int weight = miniEdge.getWeight();
@@ -110,9 +112,9 @@ public class Kruskal {
 
 	
 
-private PriorityQueue<Edge> generateTree(int[][] graph) {
+private ArrayList<Edge> generateTree(int[][] graph) {
 	//construct edgeList.
-	PriorityQueue<Edge> edgeList = new PriorityQueue<Edge>();
+	ArrayList<Edge> edgeList = new ArrayList<Edge>();
 	int rowLen = graph.length;
 	int colmnLen = graph[0].length;
 	for(int i = 1; i <= rowLen; i++) {
