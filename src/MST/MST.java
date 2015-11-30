@@ -32,11 +32,6 @@ public class MST {
 			System.out.println("");
 		}
 		
-		
-		
-		
-		
-		
 		Kruskal kruskal1 = new Kruskal(graph1);
 		Kruskal kruskal2 = new Kruskal(graph2);
 		long time1, time2, time3, time4;
