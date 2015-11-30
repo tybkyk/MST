@@ -22,6 +22,21 @@ public class MST {
 			 };
 	public static void main(String args[]) {
 		
+		//test generate random matrix
+		Matrix m = new Matrix(10,10);
+		int[][] testm = m.generateRandomMaxtrix(10);
+		for(int i = 0; i < 10; i++) {
+			for(int j = 0; j < 10; j++) {
+				System.out.print(testm[i][j] + " ");
+			}
+			System.out.println("");
+		}
+		
+		
+		
+		
+		
+		
 		Kruskal kruskal1 = new Kruskal(graph1);
 		Kruskal kruskal2 = new Kruskal(graph2);
 		long time1, time2, time3, time4;
