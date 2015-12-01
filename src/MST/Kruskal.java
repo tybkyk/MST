@@ -67,10 +67,10 @@ public class Kruskal {
 			int startSetNum = -1;
 			int endSetNum = -1;
 			for(int i = 0; i < setList.size(); i++) {
-				if(setList.get(i).contains(startSetNum)) {
+				if(setList.get(i).contains(start)) {
 					startSetNum = i;
 				}
-				if(setList.get(i).contains(endSetNum)) {
+				if(setList.get(i).contains(end)) {
 					endSetNum = i;
 				}
 			}
