@@ -46,11 +46,8 @@ public class Kruskal {
 			}
 		}
 		
-		
-		
-		
 		// using map to indicate which node belongs to which set.
-		Map<Integer, Set<Integer>> map = new HashMap<Integer, Set<Integer>>();
+		ArrayList<PriorityQueue<Integer>> setList = new ArrayList<PriorityQueue<Integer>>();
 		int numberOfNodes = numVertices;
 		int treeEdgeCounter = 0;
 		//do not need "|| !edgeList.isEmpty()" just for debug, when debug we need to test each edge.
@@ -67,26 +64,31 @@ public class Kruskal {
 			Edge miniEdge = edgeList.remove(0);
 			int start = miniEdge.getStart();
 			int end = miniEdge.getEnd();
-			Set<Integer> setStart = map.get(start);
-			Set<Integer> setEnd = map.get(end);
+			int startSetNum = -1;
+			int endSetNum = -1;
+			for(int i = 0; i < setList.size(); i++) {
+				if(setList.get(i).contains(startSetNum)) {
+					startSetNum = i;
+				}
+				if(setList.get(i).contains(endSetNum)) {
+					endSetNum = i;
+				}
+			}
+			
+			
 			// both nodes did not show up in other set.
-			if(setStart == null && setEnd == null) {
-				Set<Integer> set = new HashSet<Integer>();
+			if(startSetNum == -1 && endSetNum == -1) {
+				PriorityQueue<Integer> set = new PriorityQueue<Integer>();
 				set.add(start);
 				set.add(end);
-				map.put(start, set);
-				map.put(end, set);
-			} else if(setStart == null && setEnd != null){
-				setEnd.add(start);
-				map.put(start, setEnd);
-			} else if(setStart != null && setEnd == null) {
-				setStart.add(end);
-				map.put(start, setStart);
-			} else if(setStart != null && setEnd != null && setStart != setEnd) {
-				setStart.addAll(setEnd);
-				for(int tempEnd: setEnd) {
-					map.put(tempEnd, setStart);
-				}
+				setList.add(set);
+			} else if(startSetNum == -1 && endSetNum != -1){
+				setList.get(endSetNum).add(start);
+			} else if(startSetNum != -1 && endSetNum == -1) {
+				setList.get(startSetNum).add(end);
+			} else if(startSetNum != -1 && endSetNum != -1 && startSetNum != endSetNum) {
+				setList.get(startSetNum).addAll(setList.get(endSetNum));
+				setList.remove(endSetNum);
 			} else {
 				continue;
 			}
