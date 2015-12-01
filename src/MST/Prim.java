@@ -1,7 +1,52 @@
 package MST;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class Prim {
+	
+	int[][] weight;
+	
+	/////////////////////////////////////some inner class
+	private class Edge {
+		  int start;
+		  int end;
+			
+		  public Edge (int s, int e) {
+		    start = s;
+		    end = e;
+		  }
+			
+		  public String toString() {
+		    return "" + (start+1) + "-" + (end+1);
+		  }
+	}
+	private class Pair {
+		  int key;
+		  int priority;
+		  
+		  public Pair (int k, int p) {
+		    key = k;
+		    priority = p;
+		  }
+		  
+		  public String toString() {
+		    return "(" + key + ",p=" + priority + ")";
+		  }
+	}
+	
+	public class PriorityComparator implements Comparator<Pair> {
+		  public int compare(Pair first, Pair second) {
+		    return first.priority - second.priority;
+		  }
+		}
+	/////////////////////////////////////////////////////////
 	public Prim(int[][] weight)
+	{
+		this.weight=weight;
+	}
+	
+	public void Prim_ArrayLst()
 	{
 		int MAX = Integer.MAX_VALUE;	
 		int vertexNum = weight.length;
@@ -47,5 +92,40 @@ public class Prim {
 			}
 		}
 	}
+	
+	public Edge[] Prim_PriorityQueue()
+	{
+		int n = weight.length;
+	    Edge[] mst = new Edge[n-1];
 
+	    PriorityQueue<Pair> pq = new PriorityQueue<Pair>(n, new PriorityComparator());
+	    for (int i = 1; i < n; i++) {
+	      pq.add(new Pair(i, Integer.MAX_VALUE));
+	      mst[i-1] = new Edge(i, -1);
+	    }
+	    pq.add(new Pair(0, 0));
+
+	    while (!pq.isEmpty()) {
+	      int u = pq.remove().key;
+
+	      for (int v = 0; v < n; v++) {
+	        int Tweight = weight[u][v];
+	        if (Tweight > 0) {
+	          for (Pair pv : pq) {
+	            if ((pv.key == v) && (Tweight < pv.priority)) {
+	              mst[v-1].end = u;
+	              pq.remove(pv);
+	              pv.priority = Tweight;
+	              pq.add(pv);
+	              break;
+	            }
+	          }
+	        }
+	      }
+	    }
+	    for (Edge e : mst) {
+		      System.out.println(e + " with weight" + weight[e.start][e.end]);
+		    }
+	    return mst;
+	}
 }

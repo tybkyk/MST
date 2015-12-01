@@ -23,40 +23,43 @@ public class MST {
 	public static void main(String args[]) {
 		
 		//test generate random matrix
-		Matrix m = new Matrix(10,10);
-		int[][] testm = m.generateRandomMaxtrix(10);
+		Matrix m = new Matrix(10);
+		int[][] testm = m.generateRandomMaxtrix(4);//矩阵的稀疏密集程度:1密集--->10稀疏
 		for(int i = 0; i < 10; i++) {
 			for(int j = 0; j < 10; j++) {
 				System.out.print(testm[i][j] + " ");
 			}
 			System.out.println("");
 		}
+		Prim prim1= new Prim(graph1);
+		prim1.Prim_ArrayLst();
+		prim1.Prim_PriorityQueue();
 		
-		Kruskal kruskal1 = new Kruskal(graph1);
-		Kruskal kruskal2 = new Kruskal(graph2);
-		long time1, time2, time3, time4;
-		//graph1
-		time1 = System.currentTimeMillis();
-		kruskal1.generateEdgeResult();
-		time2 = System.currentTimeMillis();
-		System.out.println("Kruskal time of Graph1: " + (time2 - time1) + "ms") ;
-		
-		time3 =System.currentTimeMillis();
-		new Prim(graph1);
-		time4 =System.currentTimeMillis();
-		System.out.println("Prim time of Graph1: " + (time4 - time3) + "ms");
-		//graph1
-		System.out.println();
-		//graph2
-		time1 = System.currentTimeMillis();
-		kruskal2.generateEdgeResult();
-		time2 = System.currentTimeMillis();
-		System.out.println("Kruskal time of Graph2: " + (time2 - time1) + "ms") ;
-		
-		time3 =System.currentTimeMillis();
-		new Prim(graph2);
-		time4 =System.currentTimeMillis();
-		System.out.println("Prim time of Graph2: " + (time4 - time3) + "ms");
-		//graph2
+//		Kruskal kruskal1 = new Kruskal(graph1);
+//		Kruskal kruskal2 = new Kruskal(graph2);
+//		long time1, time2, time3, time4;
+//		//graph1
+//		time1 = System.currentTimeMillis();
+//		kruskal1.generateEdgeResult();
+//		time2 = System.currentTimeMillis();
+//		System.out.println("Kruskal time of Graph1: " + (time2 - time1) + "ms") ;
+//		
+//		time3 =System.currentTimeMillis();
+//		new Prim(graph1);
+//		time4 =System.currentTimeMillis();
+//		System.out.println("Prim time of Graph1: " + (time4 - time3) + "ms");
+//		//graph1
+//		System.out.println();
+//		//graph2
+//		time1 = System.currentTimeMillis();
+//		kruskal2.generateEdgeResult();
+//		time2 = System.currentTimeMillis();
+//		System.out.println("Kruskal time of Graph2: " + (time2 - time1) + "ms") ;
+//		
+//		time3 =System.currentTimeMillis();
+//		new Prim(graph2);
+//		time4 =System.currentTimeMillis();
+//		System.out.println("Prim time of Graph2: " + (time4 - time3) + "ms");
+//		//graph2
 	}
 }	
