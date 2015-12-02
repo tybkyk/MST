@@ -32,11 +32,11 @@ public class GraphList {
 			for(int j = 0; j < currentNumEdge; j++) {
 				Edge e = null;
 				if(i + 1 == j + 1) {
-					e = new Edge(i + 1, j + 1, Integer.MAX_VALUE);
+					continue;
 				} else {
 					e = new Edge(i + 1, j + 1, (int) (Math.random() * 9 + 1));	
 				}
-				if(j == 0) {
+				if(vertexArray[i].getAdjacentE() == null && e != null) {
 					vertexArray[i].setAdjacentE(e);
 				} else {
 					currentEdge.setNextEdge(e);
