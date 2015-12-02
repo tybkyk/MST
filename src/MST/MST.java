@@ -21,6 +21,9 @@ public class MST {
 			   {MAX, MAX,   2, MAX, MAX, MAX,   6,   7, MAX}
 			 };
 	public static void main(String args[]) {
+		GraphList g = new GraphList(10); 
+		g.generateRandomGraph();
+		g.printGraph();
 		
 		//test generate random matrix
 		Matrix m = new Matrix(10);

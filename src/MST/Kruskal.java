@@ -190,16 +190,16 @@ public class Kruskal {
 		boolean branch1 = false;
 		boolean branch2 = false;
 		for(Edge e: resultEdgeList) {
-			if(e.start == start && !markedNode.contains(e.end)) {
-				branch1 = findNodeDFS(e.end, destination, resultEdgeList);
+			if(e.getStart() == start && !markedNode.contains(e.getEnd())) {
+				branch1 = findNodeDFS(e.getEnd(), destination, resultEdgeList);
 			}
-			if(e.end == start && !markedNode.contains(e.start)) {
-				branch2 = findNodeDFS(e.start, destination, resultEdgeList);
+			if(e.getEnd() == start && !markedNode.contains(e.getStart())) {
+				branch2 = findNodeDFS(e.getStart(), destination, resultEdgeList);
 			}
 			if(branch1 || branch2) {
 				return true;
 			}
-			if(e.start != start && e.end != start) {
+			if(e.getStart() != start && e.getEnd() != start) {
 				continue;
 			}
 		}
@@ -225,54 +225,53 @@ public class Kruskal {
 	}
 
 
-
-
-class Edge implements Comparable<Edge>{
-	
-	private int start;
-	private int end;
-	private int weight;
-	
-	public Edge(int inputStart, int inputEnd, int inputWeight) {
-		this.start = inputStart;
- 		this.end = inputEnd;
-		this.weight = inputWeight;
-	}
-	
-	public int getStart() {
-		return start;
-	}
-	public void setStart(int start) {
-		this.start = start;
-	}
-	public int getEnd() {
-		return end;
-	}
-	public void setEnd(int end) {
-		this.end = end;
-	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-
-	@Override
-	public int compareTo(Edge o) {
-		if(o.weight == weight) {
-			return 0;
-		} else if( o.weight > weight) {
-			return -1;
-		} else if (o.weight < weight) {
-			return 1;
-		}
-		return 0;
-	}
-	
-	public String toString() {
-		return start + "--" + end + ":" + weight;
-	}
 }
 
-}
+//class Edge implements Comparable<Edge>{
+//
+//private int start;
+//private int end;
+//private int weight;
+//
+//public Edge(int inputStart, int inputEnd, int inputWeight) {
+//	this.start = inputStart;
+//		this.end = inputEnd;
+//	this.weight = inputWeight;
+//}
+//
+//public int getStart() {
+//	return start;
+//}
+//public void setStart(int start) {
+//	this.start = start;
+//}
+//public int getEnd() {
+//	return end;
+//}
+//public void setEnd(int end) {
+//	this.end = end;
+//}
+//public int getWeight() {
+//	return weight;
+//}
+//public void setWeight(int weight) {
+//	this.weight = weight;
+//}
+//
+//@Override
+//public int compareTo(Edge o) {
+//	if(o.weight == weight) {
+//		return 0;
+//	} else if( o.weight > weight) {
+//		return -1;
+//	} else if (o.weight < weight) {
+//		return 1;
+//	}
+//	return 0;
+//}
+//
+//public String toString() {
+//	return start + "--" + end + ":" + weight;
+//}
+//}
+//
