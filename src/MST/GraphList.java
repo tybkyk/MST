@@ -35,6 +35,7 @@ public class GraphList {
 					continue;
 				} else {
 					e = new Edge(i + 1, j + 1, (int) (Math.random() * 9 + 1));	
+					numEdges++;
 				}
 				if(vertexArray[i].getAdjacentE() == null && e != null) {
 					vertexArray[i].setAdjacentE(e);
