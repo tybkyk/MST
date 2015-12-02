@@ -34,7 +34,7 @@ public class GraphList {
 				if(i + 1 == j + 1) {
 					e = new Edge(i + 1, j + 1, Integer.MAX_VALUE);
 				} else {
-					e = new Edge(i + 1, j + 1, (int) (Math.random() * 10));	
+					e = new Edge(i + 1, j + 1, (int) (Math.random() * 9 + 1));	
 				}
 				if(j == 0) {
 					vertexArray[i].setAdjacentE(e);
@@ -57,29 +57,15 @@ public class GraphList {
 		}
 	}
 	
-	/**
-	 * get position of certain vertex key
-	 * */
-	public int getVertexPos(int vertexKey) {
-		for(int i = 0; i < vertexArray.length; i++) {
-			if(vertexKey == vertexArray[i].getKey()) {
-				return i;
-			}
-		}
-		return -1;
-	}
 	
 	/**
-	 * get vertex key of certain vertex position
+	 * get next neighbor vertex key number of certain vertex key
+	 * @param vertexkey the start vertex number.
+	 * @return end vertex number of fist edge in link list. 
 	 * */
-	public int getkey(int vertexPos) {
-		return (vertexPos >= 0 && vertexPos < numVertices)? vertexArray[vertexPos].getKey(): -1;
-	}
-	
-	
-	public int getFirstNeighbor(int vertexPos) {
-		if(vertexPos != -1) {
-			Edge e = vertexArray[vertexPos].getAdjacentE();
+	public int getFirstNeighbor(int vertexkey) {
+		if(vertexkey - 1 != -1) {
+			Edge e = vertexArray[vertexkey - 1].getAdjacentE();
 			if(e != null) {
 				return e.getEnd();
 			}
@@ -88,10 +74,15 @@ public class GraphList {
 		return -1;
 	}
 	
-	
-	public int getNextNeighbor(int vertexPos, int nextVertexKey) {
-		if(vertexPos != -1) {
-			Edge e = vertexArray[vertexPos].getAdjacentE();
+	/**
+	 * get next neighbor vertex key number of certain vertex key
+	 * @param vertexkey the start vertex number.
+	 * @param nextVertexKey The end vertex number of the edge that you want to find its next end vertex number
+	 * @return vertexKey 
+	 * */
+	public int getNextNeighbor(int vertexkey, int nextVertexKey) {
+		if(vertexkey - 1  != -1) {
+			Edge e = vertexArray[vertexkey - 1].getAdjacentE();
 			if(nextVertexKey != e.getEnd() && e != null) {
 				e = e.getNextEdge();
 			}
@@ -111,11 +102,28 @@ public class GraphList {
 	}
 	
 	private void printEdgeWeight(Edge nextEdge) {
-		System.out.print(nextEdge.getWeight() + " ");
+		System.out.print(nextEdge + " ");
 		if(nextEdge.getNextEdge() != null) {
 			printEdgeWeight(nextEdge.getNextEdge());
 		}
 	}
 	
-	
+//	/**
+//	 * get position of certain vertex key
+//	 * */
+//	public int getVertexPos(int vertexKey) {
+//		for(int i = 0; i < vertexArray.length; i++) {
+//			if(vertexKey == vertexArray[i].getKey()) {
+//				return i;
+//			}
+//		}
+//		return -1;
+//	}
+//	
+//	/**
+//	 * get vertex key of certain vertex position
+//	 * */
+//	public int getkey(int vertexPos) {
+//		return (vertexPos >= 0 && vertexPos < numVertices)? vertexArray[vertexPos].getKey(): -1;
+//	}
 }

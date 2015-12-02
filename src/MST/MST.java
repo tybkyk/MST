@@ -24,7 +24,8 @@ public class MST {
 		GraphList g = new GraphList(10); 
 		g.generateRandomGraph();
 		g.printGraph();
-		
+		System.out.println(g.getFirstNeighbor(1));
+		System.out.println(g.getNextNeighbor(1,2));
 		//test generate random matrix
 		Matrix m = new Matrix(10);
 		int[][] testm = m.generateRandomMaxtrix(4);//矩阵的稀疏密集程度:1密集--->10稀疏
