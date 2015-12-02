@@ -93,7 +93,7 @@ public class Prim {
 		}
 	}
 	
-	public Edge[] Prim_PriorityQueue()
+	public void Prim_PriorityQueue()
 	{
 		int n = weight.length;
 	    Edge[] mst = new Edge[n-1];
@@ -126,6 +126,6 @@ public class Prim {
 	    for (Edge e : mst) {
 		      System.out.println(e + " with weight" + weight[e.start][e.end]);
 		    }
-	    return mst;
+
 	}
 }
