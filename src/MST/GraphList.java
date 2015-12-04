@@ -1,5 +1,6 @@
 package MST;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -27,7 +28,7 @@ public class GraphList {
 	
 	public void generateRandomGraph() {
 		for(int i = 0; i < numVertices; i++) {
-			int currentNumEdge = random.nextInt(numVertices - 1);
+			int currentNumEdge = random.nextInt(10) + 1;
 			Edge currentEdge = null;
 			for(int j = 0; j < currentNumEdge; j++) {
 				Edge e = null;
@@ -45,6 +46,58 @@ public class GraphList {
 				currentEdge = e;
 			}
 		}
+	}
+	
+	public void generateStarGraph() {
+		Edge currentEdge = null;
+		for(int i = 1; i < numVertices; i++) {
+			int weight = random.nextInt(10) + 1;
+			if(i == 1 && currentEdge == null) {
+				Edge e = new Edge(1, i + 1, weight);
+				vertexArray[0].setAdjacentE(e);
+				currentEdge = e;
+				numEdges++;	
+			} else {
+				Edge e = new Edge(1, i + 1, weight);
+				currentEdge.setNextEdge(e);
+				currentEdge = e;
+				numEdges++;
+			}
+//			
+//			Edge eReverse = new Edge(i + 1, 1, weight);
+//			vertexArray[i].setAdjacentE(eReverse);
+//			numEdges++;
+		}
+	}
+	
+	public void generateLineGraph() {
+		for(int i = 0; i < numVertices; i++) {
+			//last vertex do not have an edge.
+			if(i == numVertices - 1) {
+				continue;
+			}
+			Edge e = new Edge(i + 1, i + 2, random.nextInt(10) + 1);
+			vertexArray[i].setAdjacentE(e);
+			numEdges++;
+		}
+		
+	}
+	
+	
+	public ArrayList<Edge> getAllEdges() {
+		ArrayList<Edge> edgeList = new ArrayList<Edge>();
+		for(int i = 0; i < numVertices; i++) {
+			if(vertexArray[i].getAdjacentE() == null) {
+				continue;
+			}
+			Edge currentEdge = vertexArray[i].getAdjacentE();
+			edgeList.add(currentEdge);
+			while(currentEdge.getNextEdge() != null) {
+				currentEdge = currentEdge.getNextEdge();
+				edgeList.add(currentEdge);
+			}
+		}
+		return edgeList;
 	}
 	
 	
@@ -97,8 +150,13 @@ public class GraphList {
 	
 	public void printGraph() {
 		for(int i = 0; i < numVertices; i++) {
-			printEdgeWeight(vertexArray[i].getAdjacentE());
-			System.out.println("");
+			if(vertexArray[i].getAdjacentE() == null) {
+				System.out.println("No edge in current vertex.");
+			} else {
+				printEdgeWeight(vertexArray[i].getAdjacentE());
+				System.out.println("");	
+			}
+			
 		}
 	}
 	
@@ -107,6 +165,26 @@ public class GraphList {
 		if(nextEdge.getNextEdge() != null) {
 			printEdgeWeight(nextEdge.getNextEdge());
 		}
+	}
+
+
+	public int getNumVertices() {
+		return numVertices;
+	}
+
+
+	public void setNumVertices(int numVertices) {
+		this.numVertices = numVertices;
+	}
+
+
+	public int getNumEdges() {
+		return numEdges;
+	}
+
+
+	public void setNumEdges(int numEdges) {
+		this.numEdges = numEdges;
 	}
 	
 //	/**

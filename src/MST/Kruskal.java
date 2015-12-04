@@ -19,13 +19,14 @@ public class Kruskal {
 	public Kruskal(int[][] graph) {
 		this.numVertices = graph.length;
 		this.edgeList = generateTree(graph);
-		
-		//Test number of edges
-//		for(Edge e : edgeList) {
-//			System.out.println(e.toString());
-//		}
+
 	}
 	
+	
+	public Kruskal(ArrayList<Edge> edgeList, int numVertices) {
+		this.numVertices = numVertices;
+		this.edgeList = edgeList;
+	}
 	
 	
 	public void generateEdgeResult() {
@@ -54,11 +55,11 @@ public class Kruskal {
 		while (treeEdgeCounter < numberOfNodes - 1) {
 			
 			//sleep for a while
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(10);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 			
 			
 			Edge miniEdge = edgeList.remove(0);
@@ -104,7 +105,7 @@ public class Kruskal {
 				continue;
 			}
 			outputEdgeList.add(miniEdge);
-			System.out.println(miniEdge);
+//			System.out.println(miniEdge);
 			treeEdgeCounter++;
 		}
 		
@@ -139,11 +140,11 @@ public class Kruskal {
 		while (treeEdgeCounter < numberOfNodes - 1) {
 			
 			//sleep for a while
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(10);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 			
 			
 			Edge miniEdge = edgeList.remove(0);
@@ -167,7 +168,7 @@ public class Kruskal {
 				
 				
 				outputEdgeList.add(miniEdge);
-				System.out.println(miniEdge);
+//				System.out.println(miniEdge);
 				treeEdgeCounter++;
 			} else {
 				continue;
@@ -224,6 +225,8 @@ public class Kruskal {
 		return edgeList;
 	}
 
+	
+	
 
 }
 

@@ -21,49 +21,88 @@ public class MST {
 			   {MAX, MAX,   2, MAX, MAX, MAX,   6,   7, MAX}
 			 };
 	public static void main(String args[]) {
-		GraphList g = new GraphList(10); 
-		g.generateRandomGraph();
-		g.printGraph();
-		System.out.println(g.getFirstNeighbor(1));
-		System.out.println(g.getNextNeighbor(1,2));
-		//test generate random matrix
-		Matrix m = new Matrix(10);
-		int[][] testm = m.generateRandomMaxtrix(4);//矩阵的稀疏密集程度:1密集--->10稀疏
-		for(int i = 0; i < 10; i++) {
-			for(int j = 0; j < 10; j++) {
-				System.out.print(testm[i][j] + " ");
-			}
-			System.out.println("");
-		}
-//		Prim prim1= new Prim(graph1);
-//		prim1.Prim_ArrayLst();
-//		prim1.Prim_PriorityQueue();
 		
-		Kruskal kruskal1 = new Kruskal(graph1);
-		Kruskal kruskal2 = new Kruskal(graph2);
-		long time1, time2, time3, time4;
-		//graph1
-		time1 = System.currentTimeMillis();
-		kruskal1.generateEdgeResult();
-		time2 = System.currentTimeMillis();
-		System.out.println("Kruskal time of Graph1: " + (time2 - time1) + "ms") ;
+		long timer1, timer2;
+		int numVertices = 1000;
+		GraphList starGraph = new GraphList(numVertices); 
+		starGraph.generateStarGraph();
+		GraphList lineGraph = new GraphList(numVertices); 
+		lineGraph.generateLineGraph();
+		GraphList randomGraph = new GraphList(numVertices); 
+		randomGraph.generateRandomGraph();
+		System.out.println("finish generate graph.");
 		
-		time3 =System.currentTimeMillis();
-		new Prim(graph1).Prim_ArrayLst();
-		time4 =System.currentTimeMillis();
-		System.out.println("Prim time of Graph1: " + (time4 - time3) + "ms");
-		//graph1
-		System.out.println();
-		//graph2
-		time1 = System.currentTimeMillis();
-		kruskal2.generateEdgeResult();
-		time2 = System.currentTimeMillis();
-		System.out.println("Kruskal time of Graph2: " + (time2 - time1) + "ms") ;
+		//============star==============
+		System.out.println("star graph: " + "number of vertices:" + numVertices + "number of edges :" + starGraph.getNumEdges());
+		Kruskal kruskal_star_unionset = new Kruskal(starGraph.getAllEdges(), starGraph.getNumVertices());
+		timer1 = System.currentTimeMillis();
+		kruskal_star_unionset.generateEdgeResult();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Kruskal time of star graph with union set: " + (timer2 - timer1) + "ms") ;
+		Kruskal kruskal_star_DFS = new Kruskal(starGraph.getAllEdges(), starGraph.getNumVertices());
+		timer1 = System.currentTimeMillis();
+		kruskal_star_DFS.generateEdgeResultDFS();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Kruskal time of star graph with DFS: " + (timer2 - timer1) + "ms") ;
+		//============star==============
 		
-		time3 =System.currentTimeMillis();
-		new Prim(graph2).Prim_ArrayLst();
-		time4 =System.currentTimeMillis();
-		System.out.println("Prim time of Graph2: " + (time4 - time3) + "ms");
+		//============line==============
+		System.out.println("line graph: " + "number of vertices:" + numVertices + "number of edges :" + lineGraph.getNumEdges());
+		Kruskal kruskal_line_unionset = new Kruskal(lineGraph.getAllEdges(), lineGraph.getNumVertices());
+		timer1 = System.currentTimeMillis();
+		kruskal_line_unionset.generateEdgeResult();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Kruskal time of line graph with union set: " + (timer2 - timer1) + "ms") ;
+		Kruskal kruskal_line_DFS = new Kruskal(lineGraph.getAllEdges(), lineGraph.getNumVertices());
+		timer1 = System.currentTimeMillis();
+		kruskal_line_DFS.generateEdgeResultDFS();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Kruskal time of line graph with DFS: " + (timer2 - timer1) + "ms") ;
+		//============line==============
+		
+		//============random==============
+		System.out.println("random graph: " + "number of vertices:" + numVertices + "number of edges :" + randomGraph.getNumEdges());
+		Kruskal kruskal_random_unionset = new Kruskal(randomGraph.getAllEdges(), randomGraph.getNumVertices());
+		timer1 = System.currentTimeMillis();
+		kruskal_random_unionset.generateEdgeResult();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Kruskal time of random graph with union set: " + (timer2 - timer1) + "ms") ;
+		Kruskal kruskal_random_DFS = new Kruskal(randomGraph.getAllEdges(), randomGraph.getNumVertices());
+		timer1 = System.currentTimeMillis();
+		kruskal_random_DFS.generateEdgeResultDFS();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Kruskal time of random graph with DFS: " + (timer2 - timer1) + "ms") ;
+		//============random==============
+		
+//		Kruskal kruskal1 = new Kruskal(starGraph.getAllEdges(), starGraph.getNumVertices());
+//		Kruskal kruskal2 = new Kruskal(starGraph.getAllEdges(), starGraph.getNumVertices());
+//		long time1, time2, time3, time4;
+//		
+//		
+//		
+//		
+//		//graph1
+//		time1 = System.currentTimeMillis();
+//		kruskal1.generateEdgeResultDFS();
+//		time2 = System.currentTimeMillis();
+//		System.out.println("Kruskal time of Graph1: " + (time2 - time1) + "ms") ;
+//		
+//		time3 =System.currentTimeMillis();
+//		new Prim(graph1).Prim_ArrayLst();
+//		time4 =System.currentTimeMillis();
+//		System.out.println("Prim time of Graph1: " + (time4 - time3) + "ms");
+//		//graph1
+//		System.out.println();
+//		//graph2
+//		time1 = System.currentTimeMillis();
+//		kruskal2.generateEdgeResultDFS();
+//		time2 = System.currentTimeMillis();
+//		System.out.println("Kruskal time of Graph2: " + (time2 - time1) + "ms") ;
+//		
+//		time3 =System.currentTimeMillis();
+//		new Prim(graph2).Prim_ArrayLst();
+//		time4 =System.currentTimeMillis();
+//		System.out.println("Prim time of Graph2: " + (time4 - time3) + "ms");
 		//graph2
 	}
 }	
