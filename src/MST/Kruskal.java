@@ -40,12 +40,12 @@ public class Kruskal {
 		}
 		
 		//use two-dimention array to record result
-		int[][] tree = new int[numVertices][numVertices];
-		for(int i = 0; i < numVertices; i++) {
-			for(int j = 0; j < numVertices; j++) {
-				tree[i][j] = Integer.MAX_VALUE;
-			}
-		}
+//		int[][] tree = new int[numVertices][numVertices];
+//		for(int i = 0; i < numVertices; i++) {
+//			for(int j = 0; j < numVertices; j++) {
+//				tree[i][j] = Integer.MAX_VALUE;
+//			}
+//		}
 		
 		// using map to indicate which node belongs to which set.
 		ArrayList<PriorityQueue<Integer>> setList = new ArrayList<PriorityQueue<Integer>>();
@@ -124,12 +124,12 @@ public class Kruskal {
 		}
 		
 		//use two-dimention array to record result
-		int[][] tree = new int[numVertices][numVertices];
-		for(int i = 0; i < numVertices; i++) {
-			for(int j = 0; j < numVertices; j++) {
-				tree[i][j] = Integer.MAX_VALUE;
-			}
-		}
+//		int[][] tree = new int[numVertices][numVertices];
+//		for(int i = 0; i < numVertices; i++) {
+//			for(int j = 0; j < numVertices; j++) {
+//				tree[i][j] = Integer.MAX_VALUE;
+//			}
+//		}
 		
 		
 		

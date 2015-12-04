@@ -23,7 +23,7 @@ public class MST {
 	public static void main(String args[]) {
 		
 		long timer1, timer2;
-		int numVertices = 1000;
+		int numVertices = 100000;
 		GraphList starGraph = new GraphList(numVertices); 
 		starGraph.generateStarGraph();
 		GraphList lineGraph = new GraphList(numVertices); 
