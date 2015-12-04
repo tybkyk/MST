@@ -74,35 +74,80 @@ public class MST {
 		System.out.println("Kruskal time of random graph with DFS: " + (timer2 - timer1) + "ms") ;
 		//============random==============
 		
+		
+		//============star==============
+		System.out.println("star graph: " + "number of vertices:" + numVertices + "number of edges :" + starGraph.getNumEdges());
+		Prim prim_star_arrayList = new Prim(starGraph);
+		timer1 = System.currentTimeMillis();
+		prim_star_arrayList.Prim_ArrayLst();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Prim time of star graph with Arraylist: " + (timer2 - timer1) + "ms") ;
+		Prim prim_star_priorityQueue = new Prim(starGraph);
+		timer1 = System.currentTimeMillis();
+		prim_star_priorityQueue.Prim_PriorityQueue();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Prim time of star graph with priorityQueue: " + (timer2 - timer1) + "ms") ;
+		//============star==============
+		
+		//============line==============
+		System.out.println("line graph: " + "number of vertices:" + numVertices + "number of edges :" + lineGraph.getNumEdges());
+		Prim prim_line_arrayList = new Prim(lineGraph);
+		timer1 = System.currentTimeMillis();
+		prim_line_arrayList.Prim_ArrayLst();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Prim time of line graph with Arraylist: " + (timer2 - timer1) + "ms") ;
+		Prim prim_line_priorityQueue = new Prim(lineGraph);
+		timer1 = System.currentTimeMillis();
+		prim_line_priorityQueue.Prim_PriorityQueue();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Prim time of line graph with priorityQueue: " + (timer2 - timer1) + "ms") ;
+		//============line==============
+		
+		//============random==============
+		System.out.println("random graph: " + "number of vertices:" + numVertices + "number of edges :" + randomGraph.getNumEdges());
+		Prim prim_random_arrayList = new Prim(randomGraph);
+		timer1 = System.currentTimeMillis();
+		prim_random_arrayList.Prim_ArrayLst();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Prim time of random graph with Arraylist: " + (timer2 - timer1) + "ms") ;
+		Prim prim_random_priorityQueue = new Prim(randomGraph);
+		timer1 = System.currentTimeMillis();
+		prim_random_priorityQueue.Prim_PriorityQueue();
+		timer2 = System.currentTimeMillis();
+		System.out.println("Prim time of random graph with priorityQueue: " + (timer2 - timer1) + "ms") ;
+		//============random==============
+		
+		
+		
+		
+		
 //		Kruskal kruskal1 = new Kruskal(starGraph.getAllEdges(), starGraph.getNumVertices());
 //		Kruskal kruskal2 = new Kruskal(starGraph.getAllEdges(), starGraph.getNumVertices());
+//		
+//		
 //		long time1, time2, time3, time4;
-//		
-//		
-//		
 //		
 //		//graph1
 //		time1 = System.currentTimeMillis();
-//		kruskal1.generateEdgeResultDFS();
+////		kruskal1.generateEdgeResultDFS();
 //		time2 = System.currentTimeMillis();
 //		System.out.println("Kruskal time of Graph1: " + (time2 - time1) + "ms") ;
 //		
 //		time3 =System.currentTimeMillis();
-//		new Prim(graph1).Prim_ArrayLst();
+//		new Prim(starGraph).Prim_PriorityQueue();
 //		time4 =System.currentTimeMillis();
 //		System.out.println("Prim time of Graph1: " + (time4 - time3) + "ms");
 //		//graph1
 //		System.out.println();
 //		//graph2
 //		time1 = System.currentTimeMillis();
-//		kruskal2.generateEdgeResultDFS();
+////		kruskal2.generateEdgeResultDFS();
 //		time2 = System.currentTimeMillis();
 //		System.out.println("Kruskal time of Graph2: " + (time2 - time1) + "ms") ;
 //		
 //		time3 =System.currentTimeMillis();
-//		new Prim(graph2).Prim_ArrayLst();
+//		new Prim(starGraph).Prim_PriorityQueue();
 //		time4 =System.currentTimeMillis();
 //		System.out.println("Prim time of Graph2: " + (time4 - time3) + "ms");
-		//graph2
 	}
 }	

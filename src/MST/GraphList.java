@@ -187,6 +187,36 @@ public class GraphList {
 		this.numEdges = numEdges;
 	}
 	
+	
+	
+	
+	
+	public int getWeightFromUtoV(int vertexU, int vertexV) {
+		Edge e = vertexArray[vertexU - 1].getAdjacentE();
+		if(e == null) {
+			return -1;
+		} else {
+			if(e.getEnd() == vertexV) {
+				return e.getWeight();
+			} else {
+				return getWeightFromUtoVwithEdge(vertexV, e);
+			}
+		}
+	}
+	
+	
+	
+	
+	private int getWeightFromUtoVwithEdge(int vertexV, Edge e) {
+		Edge currentEdge = e;
+		if(currentEdge == null) {
+			return -1;
+		} else if(e.getEnd() == vertexV){
+			return e.getWeight();
+		} else {
+			return getWeightFromUtoVwithEdge(vertexV, e.getNextEdge());
+		}
+	}
 //	/**
 //	 * get position of certain vertex key
 //	 * */
