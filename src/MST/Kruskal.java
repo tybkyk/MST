@@ -168,7 +168,7 @@ public class Kruskal {
 				
 				
 				outputEdgeList.add(miniEdge);
-				System.out.println(miniEdge);
+//				System.out.println(miniEdge);
 				treeEdgeCounter++;
 			} else {
 				continue;
