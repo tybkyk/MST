@@ -135,9 +135,9 @@ public class Prim {
 	        }
 	      }
 	    }
-//	    for (Alter_Edge e : mst) {
-//	    	System.out.println(e + " with weight" + (gList.getWeightFromUtoV(e.start + 1, e.end + 1) == -1 ? MAX: gList.getWeightFromUtoV(e.start + 1, e.end + 1)));
-//	    }
+	    for (Alter_Edge e : mst) {
+	    	System.out.println(e + " with weight" + (gList.getWeightFromUtoV(e.start + 1, e.end + 1) == -1 ? MAX: gList.getWeightFromUtoV(e.start + 1, e.end + 1)));
+	    }
 
 	}
 }
