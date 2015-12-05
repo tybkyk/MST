@@ -57,7 +57,7 @@ public class Prim {
 		this.gList = gList;
 	}
 	
-	public void Prim_ArrayLst()
+	public void Prim_ArrayList()
 	{
 		
 		int vertexNum = gList.getNumVertices();

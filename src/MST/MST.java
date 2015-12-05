@@ -79,7 +79,7 @@ public class MST {
 		System.out.println("star graph: " + "number of vertices:" + numVertices + "number of edges :" + starGraph.getNumEdges());
 		Prim prim_star_arrayList = new Prim(starGraph);
 		timer1 = System.currentTimeMillis();
-		prim_star_arrayList.Prim_ArrayLst();
+		prim_star_arrayList.Prim_ArrayList();
 		timer2 = System.currentTimeMillis();
 		System.out.println("Prim time of star graph with Arraylist: " + (timer2 - timer1) + "ms") ;
 		Prim prim_star_priorityQueue = new Prim(starGraph);
@@ -93,7 +93,7 @@ public class MST {
 		System.out.println("line graph: " + "number of vertices:" + numVertices + "number of edges :" + lineGraph.getNumEdges());
 		Prim prim_line_arrayList = new Prim(lineGraph);
 		timer1 = System.currentTimeMillis();
-		prim_line_arrayList.Prim_ArrayLst();
+		prim_line_arrayList.Prim_ArrayList();
 		timer2 = System.currentTimeMillis();
 		System.out.println("Prim time of line graph with Arraylist: " + (timer2 - timer1) + "ms") ;
 		Prim prim_line_priorityQueue = new Prim(lineGraph);
@@ -107,7 +107,7 @@ public class MST {
 		System.out.println("random graph: " + "number of vertices:" + numVertices + "number of edges :" + randomGraph.getNumEdges());
 		Prim prim_random_arrayList = new Prim(randomGraph);
 		timer1 = System.currentTimeMillis();
-		prim_random_arrayList.Prim_ArrayLst();
+		prim_random_arrayList.Prim_ArrayList();
 		timer2 = System.currentTimeMillis();
 		System.out.println("Prim time of random graph with Arraylist: " + (timer2 - timer1) + "ms") ;
 		Prim prim_random_priorityQueue = new Prim(randomGraph);
