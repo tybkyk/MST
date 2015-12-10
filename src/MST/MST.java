@@ -25,7 +25,7 @@ public class MST {
 		
 
 		long timer1, timer2;
-		int numVertices = 10;
+		int numVertices = 5000;
 		GraphList starGraph = new GraphList(numVertices); 
 		starGraph.generateStarGraph();
 		GraphList lineGraph = new GraphList(numVertices); 
@@ -153,7 +153,5 @@ public class MST {
 //		new Prim(starGraph).Prim_PriorityQueue();
 //		time4 =System.currentTimeMillis();
 //		System.out.println("Prim time of Graph2: " + (time4 - time3) + "ms");
-		new Prim(graph1).Prim_ArrayList();
-		new Prim(graph1).Prim_PriorityQueue();
 	}
 }	

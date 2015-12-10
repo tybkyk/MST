@@ -103,7 +103,7 @@ public class Prim {
 	    PriorityQueue<Pair> pq = new PriorityQueue<Pair>(n, new PriorityComparator());
 	    for (int i = 1; i < n; i++) {
 	      pq.add(new Pair(i, Integer.MAX_VALUE));
-	      mst[i-1] = new Alter_Edge(i, -1);
+	      mst[i-1] = new Alter_Edge(i, 0);
 	    }
 	    pq.add(new Pair(0, 0));
 
@@ -112,7 +112,7 @@ public class Prim {
 
 	      for (int v = 0; v < n; v++) {
 	        int Tweight = weight[u][v];
-	        if (Tweight > 0) {
+	        if (Tweight !=Integer.MAX_VALUE) {
 	          for (Pair pv : pq) {
 	            if ((pv.key == v) && (Tweight < pv.priority)) {
 	              mst[v-1].end = u;
@@ -153,11 +153,6 @@ public class Prim {
 				if(lowestW[k]<min&&(!checked[k])){
 					min=lowestW[k];
 					nextpick=k;
-//					try {
-//						Thread.sleep(10);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//						}
 				}
 			}
 //			if(i<vertexNum-1)
@@ -165,14 +160,9 @@ public class Prim {
 			checked[nextpick]=true;
 			
 			for(int k=1; k < vertexNum; k++){
-				if(((gList.getWeightFromUtoV(1, i + 1) == -1 ? MAX: gList.getWeightFromUtoV(1, i + 1))<lowestW[k])&&(!checked[k])){
-					lowestW[k]= (gList.getWeightFromUtoV(1, i + 1) == -1 ? MAX: gList.getWeightFromUtoV(1, i + 1));
+				if(((gList.getWeightFromUtoV(nextpick+1, k + 1) == -1 ? MAX: gList.getWeightFromUtoV(nextpick+1, k + 1))<lowestW[k])&&(!checked[k])){
+					lowestW[k]= (gList.getWeightFromUtoV(nextpick+1, k + 1) == -1 ? MAX: gList.getWeightFromUtoV(nextpick+1, k + 1));
 				    edge[k]=nextpick+1;
-//				    try {
-//						Thread.sleep(10);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//						}
 				}
 			}
 		}
@@ -196,7 +186,7 @@ public class Prim {
 
 	      for (int v = 0; v < n; v++) {
 	        int Tweight = gList.getWeightFromUtoV(u + 1, v + 1) == -1 ? MAX: gList.getWeightFromUtoV(u + 1, v + 1);
-	        if (Tweight > 0) {
+	        if (Tweight !=Integer.MAX_VALUE) {
 	          for (Pair pv : pq) {
 	            if ((pv.key == v) && (Tweight < pv.priority)) {
 	              mst[v-1].end = u;
