@@ -28,14 +28,18 @@ public class GraphList {
 	
 	public void generateRandomGraph() {
 		for(int i = 0; i < numVertices; i++) {
-			int currentNumEdge = random.nextInt(10) + 1;
-			Edge currentEdge = null;
+			int currentNumEdge = random.nextInt(5) + 1;
+			Edge currentEdge = vertexArray[i].getAdjacentE();
 			for(int j = 0; j < currentNumEdge; j++) {
 				Edge e = null;
+				Edge reverseE = null;
 				if(i + 1 == j + 1) {
 					continue;
 				} else {
-					e = new Edge(i + 1, j + 1, (int) (Math.random() * 9 + 1));	
+					int randomV = (int) (Math.random() * 9 + 1);
+					e = new Edge(i + 1, j + 1, randomV);	
+					reverseE = new Edge(j + 1, i + 1, randomV);
+					
 					numEdges++;
 				}
 				if(vertexArray[i].getAdjacentE() == null && e != null) {
@@ -44,9 +48,26 @@ public class GraphList {
 					currentEdge.setNextEdge(e);
 				}
 				currentEdge = e;
+				
+				if(vertexArray[j].getAdjacentE() == null && reverseE != null) {
+					vertexArray[j].setAdjacentE(reverseE);
+				} else {
+					getLastEdge(vertexArray[j].getAdjacentE()).setNextEdge(reverseE);
+				}
+				
+				
 			}
 		}
 	}
+	
+	private Edge getLastEdge(Edge e) {
+		if(e.getNextEdge() == null) {
+			return e;
+		} else {
+			return getLastEdge(e.getNextEdge());
+		}
+	}
+	
 	
 	public void generateStarGraph() {
 		Edge currentEdge = null;
@@ -63,22 +84,35 @@ public class GraphList {
 				currentEdge = e;
 				numEdges++;
 			}
-//			
-//			Edge eReverse = new Edge(i + 1, 1, weight);
-//			vertexArray[i].setAdjacentE(eReverse);
+			
+			Edge eReverse = new Edge(i + 1, 1, weight);
+			vertexArray[i].setAdjacentE(eReverse);
 //			numEdges++;
 		}
 	}
 	
 	public void generateLineGraph() {
+		ArrayList<Integer> randomVList = new ArrayList<Integer>();
 		for(int i = 0; i < numVertices; i++) {
 			//last vertex do not have an edge.
 			if(i == numVertices - 1) {
 				continue;
 			}
-			Edge e = new Edge(i + 1, i + 2, random.nextInt(10) + 1);
+			int randomV = random.nextInt(10) + 1;
+			randomVList.add(randomV);
+			Edge e = new Edge(i + 1, i + 2, randomV);
 			vertexArray[i].setAdjacentE(e);
 			numEdges++;
+		}
+		for(int i = 1; i< numVertices; i++) {
+			if(i == numVertices - 1) {
+				Edge reverseE = new Edge(i + 1, i, randomVList.get(i - 1));
+				vertexArray[i].setAdjacentE(reverseE);
+				break;
+			}
+			Edge reverseE = new Edge(i + 1, i, randomVList.get(i - 1));
+			Edge currentE = vertexArray[i].getAdjacentE();	
+			currentE.setNextEdge(reverseE);
 		}
 		
 	}

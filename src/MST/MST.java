@@ -25,14 +25,16 @@ public class MST {
 		
 
 		long timer1, timer2;
-		int numVertices = 5000;
+		int numVertices = 10;
 		GraphList starGraph = new GraphList(numVertices); 
 		starGraph.generateStarGraph();
+		starGraph.printGraph();
 		GraphList lineGraph = new GraphList(numVertices); 
 		lineGraph.generateLineGraph();
+		lineGraph.printGraph();
 		GraphList randomGraph = new GraphList(numVertices); 
 		randomGraph.generateRandomGraph();
-//		randomGraph.printGraph();
+		randomGraph.printGraph();
 		System.out.println("finish generate graph.");
 		
 		//============star==============
