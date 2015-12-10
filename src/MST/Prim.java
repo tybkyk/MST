@@ -60,13 +60,13 @@ public class Prim {
 	public void Prim_ArrayList()
 	{
 		
-		int vertexNum = gList.getNumVertices();
+		int vertexNum = weight.length;
 		int []lowestW=new int[vertexNum];
 		int []edge=new int[vertexNum];
 		boolean []checked=new boolean[vertexNum];
 		
 		for(int i=0; i<vertexNum; i++){
-			lowestW[i] = gList.getWeightFromUtoV(1, i + 1) == -1 ? MAX: gList.getWeightFromUtoV(1, i + 1);
+			lowestW[i] = weight[0][i];
 			checked[i] = false;
 			edge[i] = 1;
 		}
@@ -79,26 +79,16 @@ public class Prim {
 				if(lowestW[k]<min&&(!checked[k])){
 					min=lowestW[k];
 					nextpick=k;
-//					try {
-//						Thread.sleep(10);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//						}
 				}
 			}
-//			if(i<vertexNum-1)
-//				System.out.println((nextpick + 1)+"--"+edge[nextpick]+" with weight"+lowestW[nextpick]);
+			if(i<vertexNum-1)
+				System.out.println((nextpick + 1)+"--"+edge[nextpick]+" with weight"+lowestW[nextpick]);
 			checked[nextpick]=true;
 			
 			for(int k=1; k < vertexNum; k++){
-				if(((gList.getWeightFromUtoV(1, i + 1) == -1 ? MAX: gList.getWeightFromUtoV(1, i + 1))<lowestW[k])&&(!checked[k])){
-					lowestW[k]= (gList.getWeightFromUtoV(1, i + 1) == -1 ? MAX: gList.getWeightFromUtoV(1, i + 1));
-				    edge[k]=nextpick+1;
-//				    try {
-//						Thread.sleep(10);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//						}
+				if((weight[nextpick][k]<lowestW[k])&&(!checked[k])){
+					lowestW[k]= weight[nextpick][k];;
+				    edge[k]=nextpick + 1;
 				}
 			}
 		}
@@ -107,7 +97,7 @@ public class Prim {
 	public void Prim_PriorityQueue()
 	{
 		
-		int n = gList.getNumVertices();
+		int n = weight.length;
 	    Alter_Edge[] mst = new Alter_Edge[n-1];
 
 	    PriorityQueue<Pair> pq = new PriorityQueue<Pair>(n, new PriorityComparator());
@@ -121,7 +111,7 @@ public class Prim {
 	      int u = pq.remove().key;
 
 	      for (int v = 0; v < n; v++) {
-	        int Tweight = gList.getWeightFromUtoV(u + 1, v + 1) == -1 ? MAX: gList.getWeightFromUtoV(u + 1, v + 1);
+	        int Tweight = weight[u][v];
 	        if (Tweight > 0) {
 	          for (Pair pv : pq) {
 	            if ((pv.key == v) && (Tweight < pv.priority)) {
@@ -135,9 +125,9 @@ public class Prim {
 	        }
 	      }
 	    }
-//	    for (Alter_Edge e : mst) {
-//	    	System.out.println(e + " with weight" + (gList.getWeightFromUtoV(e.start + 1, e.end + 1) == -1 ? MAX: gList.getWeightFromUtoV(e.start + 1, e.end + 1)));
-//	    }
+	    for (Alter_Edge e : mst) {
+	    	System.out.println(e + " with weight" + weight[e.start][e.end]);
+	    }
 
 	}
 }
